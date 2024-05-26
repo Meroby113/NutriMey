@@ -1,0 +1,904 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../static/image/55189.jpg" type="image/x-icon" />
+
+    <title>Nutri Mey</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div
+          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+        >
+          <a
+            href="{% url 'userPage' %}"
+            class="flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <img src="../static/image/logoWhite.jpg" class="h-16" alt="Logo" />
+          </a>
+          <div
+            class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+          >
+            <button
+              type="button"
+              class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              id="user-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="user-dropdown"
+              data-dropdown-placement="bottom"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                id="userPhoto"
+                class="w-8 h-8 rounded-full"
+                src="../static/image/userpic.jpg"
+                alt="user photo"
+              />
+            </button>
+            <!-- Dropdown menu -->
+            <div
+              class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+              id="user-dropdown"
+            >
+              <div class="px-4 py-3">
+                <span
+                  class="block text-sm text-gray-900 dark:text-white"
+                  id="userName"
+                  >Merve Çoban</span
+                >
+                <span
+                  class="block text-sm text-gray-500 truncate dark:text-gray-400"
+                  id="userEmail"
+                  >meroby113@gmail.com</span
+                >
+              </div>
+              <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                  <a
+                    data-modal-target="settingModal"
+                    data-modal-toggle="settingModal"
+                    id="settingLink"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Settings</a
+                  >
+                </li>
+                <li>
+                  <input type="hidden" id="homeUrl" value="{% url 'home' %}" />
+                  <a
+                    id="signoutLink"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Sign out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            id="navbar-user"
+          >
+            <ul
+              class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+            >
+              <li>
+                <a
+                  href="#"
+                  id="BMILink"
+                  data-modal-target="crud-modal"
+                  data-modal-toggle="crud-modal"
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  BMI Range
+                </a>
+              </li>
+              <li>
+                <div class="relative">
+                  <a
+                    id="calendar"
+                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >Calendar</a
+                  >
+                  <div
+                    class="absolute hidden"
+                    inline-datepicker
+                    data-date="05/28/2024"
+                    id="myCalendar1"
+                  ></div>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  data-modal-target="contact-model"
+                  data-modal-toggle="contact-model"
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <button
+            data-collapse-toggle="navbar-user"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-user"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <section class="bg-white dark:bg-gray-900">
+        <div
+          class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+        >
+          <div
+            class="relative overflow-x-auto font-light text-gray-500 sm:text-lg dark:text-gray-400"
+          >
+            <table
+              class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+            >
+              <thead
+                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+              >
+                <tr>
+                  <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3">Daily</th>
+                  <th scope="col" class="px-6 py-3">Weekly</th>
+                  <th scope="col" class="px-6 py-3">Monthly</th>
+                </tr>
+              </thead>
+              <tbody id="nutrition-table-body">
+                <!-- Rows will be inserted here by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <img
+              class="w-full rounded-lg"
+              src="../static/image/55189.jpg"
+              alt="index image"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- Models -->
+      <!-- Calendar Options Modal -->
+      <div
+        id="listGroup"
+        class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        style="display: none; position: absolute"
+      >
+        <div
+          class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        >
+          <button
+            data-modal-target="addFoodModal"
+            data-modal-toggle="addFoodModal"
+            type="button"
+            class="w-full px-4 py-2 font-medium text-left rtl:text-right border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white"
+          >
+            Add New Food
+          </button>
+          <button
+            id="showFoodList"
+            data-modal-target="listModal"
+            data-modal-toggle="listModal"
+            class="w-full px-4 py-2 font-medium text-left rtl:text-right border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white"
+            type="button"
+          >
+            Show This Day Foods List
+          </button>
+        </div>
+      </div>
+      <!-- User setting Modal -->
+
+      <!-- Main modal -->
+      <div
+        id="settingModal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                User Profile Settings
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-toggle="settingModal"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5" id="userSetting">
+              <div style="display: grid; place-items: center">
+                <img
+                  id="profilePictureSetting"
+                  class="rounded w-36 h-36"
+                  src="../static/image/userpic.jpg"
+                  alt="Extra large avatar"
+                />
+              </div>
+              <div class="grid gap-4 mb-4 grid-cols-2">
+                <!-- <input
+                    class="block flex-grow text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="file_input_help"
+                    id="profilePictureInputSetting"
+                    type="file"
+                  /> -->
+
+                <div class="col-span-2">
+                  <label
+                    for="usernameSetting"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Username
+                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="usernameSetting"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Username"
+                    required=""
+                    autocomplete="username"
+                  />
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="passwordSetting"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="passwordSetting"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="emailSetting"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your email</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="emailSetting"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    required=""
+                    autocomplete="email"
+                  />
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="genderSetting"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Gender</label
+                  >
+                  <select
+                    id="genderSetting"
+                    name="gender"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option selected>Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <!-- <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="dob"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Date of Birth</label
+                  >
+                  <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="25.12.2002"
+                    required
+                  />
+                </div> -->
+
+                <button
+                  data-modal-hide="settingModal"
+                  type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Upgrade Settings
+                </button>
+                <button
+                  data-modal-hide="settingModal"
+                  type="button"
+                  class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add New Food modal -->
+      <div
+        id="addFoodModal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                Add New Food
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-toggle="addFoodModal"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5" id="foodForm">
+              <div class="grid gap-4 mb-4 grid-cols-2">
+                <div class="col-span-2">
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Food Name</label
+                  >
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Type food name"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="calories"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Calories</label
+                  >
+                  <input
+                    type="number"
+                    name="calories"
+                    id="calories"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="100 calories"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="protein"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >protein</label
+                  >
+                  <input
+                    type="number"
+                    name="protein"
+                    id="protein"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="12.5 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="fiber"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Fiber</label
+                  >
+                  <input
+                    type="number"
+                    name="fiber"
+                    id="fiber"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="1.009 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="vitaminA"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >vitamin A</label
+                  >
+                  <input
+                    type="number"
+                    name="vitaminA"
+                    id="vitaminA"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="1.05 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="vitaminB"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >vitamin B</label
+                  >
+                  <input
+                    type="number"
+                    name="vitaminB"
+                    id="vitaminB"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="1.9 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="vitaminC"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >vitamin C</label
+                  >
+                  <input
+                    type="number"
+                    name="vitaminC"
+                    id="vitaminC"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="12.5 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="calcium"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Calcium</label
+                  >
+                  <input
+                    type="number"
+                    name="calcium"
+                    id="calcium"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="1.4 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="iodine"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Iodine</label
+                  >
+                  <input
+                    type="number"
+                    name="iodine"
+                    id="iodine"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="0.5 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="magnesium"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Magnesium</label
+                  >
+                  <input
+                    type="number"
+                    name="magnesium"
+                    id="magnesium"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="1.5 gr"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="zinc"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Zinc</label
+                  >
+                  <input
+                    type="number"
+                    name="zinc"
+                    id="zinc"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="2.5 gr"
+                    required=""
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <svg
+                  class="me-1 -ms-1 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Add new Food
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- List All Foods modal -->
+      <div
+        id="listModal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white text-center"
+              >
+                Foods List
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="listModal"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+              <table
+                id="food-table"
+                class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+              >
+                <thead
+                  class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+                >
+                  <tr>
+                    <th scope="col" class="px-6 py-3">Food Name</th>
+                    <th scope="col" class="px-6 py-3">Calories</th>
+                    <th scope="col" class="px-6 py-3">Protein</th>
+                    <th scope="col" class="px-6 py-3">Fiber</th>
+                  </tr>
+                </thead>
+                <tbody id="food-table-body">
+                  <!-- Dynamic rows will be inserted here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contact modal -->
+      <div
+        id="contact-model"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Contact Us ( If you have a problem, please let us know )
+              </h3>
+              <button
+                id="contactButton"
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="contact-model"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+              <form class="space-y-8" id="contactForm">
+                <div>
+                  <label
+                    for="contactEmail"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Your email</label
+                  >
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    placeholder="name@gmail.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="subject"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    placeholder="Let us know how we can help you"
+                    required
+                  />
+                </div>
+                <div class="sm:col-span-2">
+                  <label
+                    for="message"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >Your message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="6"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Leave a comment..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                >
+                  Send message
+                </button>
+              </form>
+            </div>
+            <!-- Modal footer -->
+          </div>
+        </div>
+      </div>
+      <!-- User Info Model -->
+      <div
+        id="crud-modal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                BMI Calculator
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-toggle="crud-modal"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5" id="BMIform">
+              <div class="grid gap-4 mb-4 grid-cols-2">
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="weight"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Weight(Kg)</label
+                  >
+                  <input
+                    type="number"
+                    name="weight"
+                    id="weight"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="55 Kg"
+                    value=""
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label
+                    for="height"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Height(cm)</label
+                  >
+                  <input
+                    type="number"
+                    name="height"
+                    id="height"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="160 cm"
+                    required=""
+                  />
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="age"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Age</label
+                  >
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="25"
+                    required
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Okey
+              </button>
+              <div id="resultContainer" class="hidden mt-4 col-span-2">
+                <div class="label-container">
+                  <div class="label" id="bmiRangeLabel">BMI Range:</div>
+                  <div class="label" id="idealWeightLabel">Ideal Weight:</div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer
+        class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 flex items-center justify-center"
+      >
+        <div class="w-full mx-auto max-w-screen-xl p-4 text-center">
+          <span class="text-sm text-gray-500 dark:text-gray-400"
+            >Designed by
+            <a href="https://github.com/Meroby113" class="hover:underline"
+              >Meroby113</a
+            >
+          </span>
+        </div>
+      </footer>
+    </header>
+    <script src="{% static 'script/script.js' %}"></script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      userPageModule.init();
+    });
+    (function () {
+      emailjs.init("UVQMPGG1jBK-nc-II");
+    })();
+  </script>
+</html>

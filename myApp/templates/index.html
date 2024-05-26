@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../static/image/55189.jpg" type="image/x-icon" />
+
+    <title>Nutri Mey</title>
+  </head>
+  <body>
+    <header>
+      <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div
+          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+        >
+          <a
+            href="{% url 'home' %}"
+            class="flex items-center space-x-5 rtl:space-x-reverse"
+          >
+            <img
+              src="../static/image/logoW.jpg"
+              class="h-24"
+              alt="website Logo"
+            />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Nutri Mey</span
+            >
+          </a>
+
+          <div class="flex md:order-2 space-x-4 rtl:space-x-reverse">
+            <a
+              href="{% url 'login' %}"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >Login</a
+            >
+            <a
+              href="{% url 'register' %}"
+              class="text-blue-700 bg-blue-200 hover:bg-blue-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:text-blue-600 dark:bg-blue-800 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >Register</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <section class="bg-white dark:bg-gray-900">
+        <div
+          class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+        >
+          <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2
+              class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+            >
+              Your Health Journey Starts Here
+            </h2>
+            <p class="mb-4">
+              At Nutri Mey, we believe that nourishing your body is the first
+              step toward a vibrant life. Whether you’re looking to lose weight,
+              boost energy, or simply improve your overall well-being, we’re
+              here to guide you on your path to success.
+            </p>
+            <h2
+              class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+            >
+              What Is Nutri Mey?
+            </h2>
+            <p class="mb-4">
+              Nutri Mey is more than just a nutrition coaching service. It’s a
+              personalized experience tailored to your unique needs. Our team of
+              certified nutritionists and wellness experts is dedicated to
+              helping you achieve your health goals through science-backed
+              advice, delicious meal plans, and ongoing support.
+            </p>
+            <h2
+              class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+            >
+              Want to start?
+            </h2>
+            <p class="mb-4">
+              If you’re ready to get started, go ahead and register!
+            </p>
+          </div>
+          <div>
+            <img
+              class="w-full rounded-lg"
+              src="../static/image/image1.jpg"
+              alt="index image"
+            />
+          </div>
+        </div>
+      </section>
+      <footer
+        class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 flex items-center justify-center"
+      >
+        <div class="w-full mx-auto max-w-screen-xl p-4 text-center">
+          <span class="text-sm text-gray-500 dark:text-gray-400"
+            >Designed by
+            <a href="https://github.com/Meroby113" class="hover:underline"
+              >Meroby113</a
+            >
+          </span>
+        </div>
+      </footer>
+    </header>
+    <script src="{% static 'script/script.js' %}"></script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</html>
