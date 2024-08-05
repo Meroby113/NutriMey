@@ -10,7 +10,7 @@ var LoginModule = (function () {
       var password = document.getElementById("password").value;
       var userPageUrl = document.getElementById("userPageUrl").value;
 
-      fetch("http://127.0.0.1:8000/api/users/")
+      fetch("https://127.0.0.1:8000/api/users/")
         .then((response) => response.json())
         .then((users) => {
           var user = users.find(
@@ -72,7 +72,7 @@ var RegisterModule = (function () {
       const formData = new FormData(registerForm);
       const payload = Object.fromEntries(formData.entries());
 
-      fetch("http://127.0.0.1:8000/api/users/", {
+      fetch("https://127.0.0.1:8000/api/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ var userPageModule = (function () {
       listGroup.style.display = "none";
     });
 
-    fetch("http://127.0.0.1:8000/api/foods")
+    fetch("https://127.0.0.1:8000/api/foods")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok " + response.statusText);
@@ -298,7 +298,7 @@ var userPageModule = (function () {
       const heightInput = document.getElementById("height");
       const ageInput = document.getElementById("age");
       if (userId) {
-        fetch(`http://127.0.0.1:8000/api/users/${userId}/`)
+        fetch(`https://127.0.0.1:8000/api/users/${userId}/`)
           .then((response) => response.json())
           .then((data) => {
             if (
@@ -353,7 +353,7 @@ var userPageModule = (function () {
 
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/users/${userId}/`,
+          `https://127.0.0.1:8000/api/users/${userId}/`,
           {
             method: "PATCH",
             headers: {
@@ -423,7 +423,7 @@ var userPageModule = (function () {
       payload.userId = userId;
       payload.data = formattedDate;
 
-      fetch("http://127.0.0.1:8000/api/foods/", {
+      fetch("https://127.0.0.1:8000/api/foods/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -455,7 +455,7 @@ var userPageModule = (function () {
       const today = formattedDate;
       console.log(today);
 
-      fetch("http://127.0.0.1:8000/api/foods")
+      fetch("https://127.0.0.1:8000/api/foods")
         .then((response) => {
           if (!response.ok) {
             throw new Error(
@@ -509,7 +509,7 @@ var userPageModule = (function () {
       const userPotho = document.getElementById("userPhoto");
 
       if (userId) {
-        fetch(`http://127.0.0.1:8000/api/users/${userId}/`)
+        fetch(`https://127.0.0.1:8000/api/users/${userId}/`)
           .then((response) => response.json())
           .then((data) => {
             userName.textContent = data.username || "User Name";
@@ -523,7 +523,7 @@ var userPageModule = (function () {
       event.preventDefault();
 
       if (userId) {
-        fetch(`http://127.0.0.1:8000/api/users/${userId}/`)
+        fetch(`https://127.0.0.1:8000/api/users/${userId}/`)
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
@@ -552,7 +552,7 @@ var userPageModule = (function () {
         jsonData[key] = value;
       });
 
-      fetch(`http://127.0.0.1:8000/api/users/${userId}/`, {
+      fetch(`https://127.0.0.1:8000/api/users/${userId}/`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
