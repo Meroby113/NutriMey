@@ -184,3 +184,16 @@
 
   <p>Link of the project: <a href="https://meroby113.pythonanywhere.com">https://meroby113.pythonanywhere.com</a></p>
 
+  # Screenshots
+  ![image](https://github.com/user-attachments/assets/26589e73-1b6e-47bb-86c2-1091961ce7d7)<br/>
+  # Login
+  ![image](https://github.com/user-attachments/assets/99f47b79-bbb5-4536-99e9-ae0ce141566c)<br/>
+  # Register
+  ![image](https://github.com/user-attachments/assets/ff6b83ce-958e-402c-ab7c-30dd72491f5b)<br/>
+  # Main Page
+  ![image](https://github.com/user-attachments/assets/cb3bcc89-cf7b-45c0-a577-8bfe13d9c6da)
+
+
+
+
+
