@@ -182,7 +182,7 @@
       </li>
   </ol>
 
-  <p>Link of the project: <a href="https://meroby113.pythonanywhere.com">https://meroby113.pythonanywhere.com</a></p>
+  <p>Example Hosting: <a href="https://meroby113.pythonanywhere.com">https://meroby113.pythonanywhere.com</a></p>
 
   # Screenshots
   ![image](https://github.com/user-attachments/assets/26589e73-1b6e-47bb-86c2-1091961ce7d7)<br/>
